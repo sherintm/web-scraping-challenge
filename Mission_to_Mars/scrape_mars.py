@@ -31,7 +31,7 @@ def scrape():
     tables = pd.read_html(facts_url)
     mars_earth_df = tables[0]
     mars_earth_df 
-    mars_table = mars_earth_df.to_html()
+    mars_table = mars_earth_df.to_html(index=False)
 
     hemisphere_url = 'https://marshemispheres.com/'
     browser.visit(hemisphere_url)
