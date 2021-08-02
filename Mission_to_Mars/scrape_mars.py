@@ -9,10 +9,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import pandas as pd
 
+# Function to scrape Mars data
 def scrape():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=True)
 
+    # Scrape news
     news_url = 'https://redplanetscience.com'
     browser.visit(news_url)
     html = browser.html
@@ -20,6 +22,7 @@ def scrape():
     news_title = soup.find('div', class_='content_title').get_text()
     news_p = soup.find('div', class_='article_teaser_body').get_text()
 
+    # Scrape image
     space_image_url = 'https://spaceimages-mars.com/'
     browser.visit(space_image_url)
     html = browser.html
@@ -27,12 +30,16 @@ def scrape():
     image = soup.find('img', class_='headerimage')
     featured_image_url = space_image_url + image['src']
 
+    # Scrape facts
     facts_url = 'https://galaxyfacts-mars.com/'
     tables = pd.read_html(facts_url)
     mars_earth_df = tables[0]
-    mars_earth_df 
-    mars_table = mars_earth_df.to_html(index=False)
+    mars_earth_df.rename(columns=mars_earth_df.iloc[0], inplace = True)
+    mars_earth_df.drop([0], inplace = True)
+    mars_table = mars_earth_df.to_html(index=False, classes=['table-primary','table-striped','table-hover'])
+    mars_table = mars_table.replace('\n', '')
 
+    # Scrape hemisphere data
     hemisphere_url = 'https://marshemispheres.com/'
     browser.visit(hemisphere_url)
     html = browser.html
