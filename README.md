@@ -1,6 +1,6 @@
 # web-scraping-challenge
 This project does web scraping of Mars related data from different websites and puts them together in a webpage.
-It scrapes data using Splinter, BeautifulSoup, Pandas and Jupyter Notebook. A Python flask application is used to render the scraped data which is stored in MongoDB.<br><br>
+It scrapes data using Splinter, BeautifulSoup, Pandas and Jupyter Notebook. A Python flask application is used to render the scraped data which is stored in MongoDB.<br>
 
 Follwoing data are scraped from the respective sites.<br>
 <ul>
